@@ -3,9 +3,11 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import { logger } from './utils/logger.js';
 import { config } from './config/env.js';
+import { connectDB } from './config/database.js';
 import { errorHandler } from './middleware/errorHandler.js';
 import projectRoutes from './routes/projects.js';
 import contactRoutes from './routes/contacts.js';
+import codingProfileRoutes from './routes/codingProfiles.js';
 
 dotenv.config();
 
@@ -47,6 +49,7 @@ app.get('/api/health', (req, res) => {
 // API Routes
 app.use('/api/projects', projectRoutes);
 app.use('/api/contacts', contactRoutes);
+app.use('/api/coding-profiles', codingProfileRoutes);
 
 // 404 handler
 app.use((req, res) => {
@@ -67,6 +70,9 @@ app.use(errorHandler);
 const PORT = config.PORT;
 const startServer = async () => {
   try {
+    // Connect to MongoDB before starting the HTTP server
+    await connectDB();
+
     app.listen(PORT, '0.0.0.0', () => {
       logger.info(`✅ Backend server running on http://localhost:${PORT}`, {
         environment: config.NODE_ENV,

@@ -1,4 +1,4 @@
-// Firestore Collection Names
+// MongoDB Collection Names
 export const COLLECTIONS = {
   PROJECTS: 'projects',
   CONTACTS: 'contacts',

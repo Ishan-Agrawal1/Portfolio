@@ -32,3 +32,55 @@
 .animate-marquee {
   animation: marquee 30s linear infinite;
 }
+
+/* ── Shimmer skeleton loader ── */
+@keyframes shimmer {
+  0% {
+    background-position: -400px 0;
+  }
+  100% {
+    background-position: 400px 0;
+  }
+}
+
+.skeleton {
+  background: linear-gradient(90deg, #1a1a1a 25%, #252525 50%, #1a1a1a 75%);
+  background-size: 800px 100%;
+  animation: shimmer 1.8s ease-in-out infinite;
+  border-radius: 8px;
+}
+
+/* ── Live indicator pulse ── */
+@keyframes pulse-live {
+  0%, 100% {
+    opacity: 1;
+    box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.5);
+  }
+  50% {
+    opacity: 0.7;
+    box-shadow: 0 0 0 6px rgba(74, 222, 128, 0);
+  }
+}
+
+.live-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #4ade80;
+  animation: pulse-live 2s ease-in-out infinite;
+}
+
+/* ── Star glow for CodeChef ── */
+@keyframes star-glow {
+  0%, 100% {
+    text-shadow: 0 0 6px rgba(233, 193, 118, 0.3);
+  }
+  50% {
+    text-shadow: 0 0 14px rgba(233, 193, 118, 0.7);
+  }
+}
+
+.star-icon {
+  animation: star-glow 3s ease-in-out infinite;
+}
+

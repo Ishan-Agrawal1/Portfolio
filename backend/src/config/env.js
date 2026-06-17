@@ -3,9 +3,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const requiredEnvVars = [
-  'FIREBASE_PROJECT_ID',
-  'FIREBASE_CLIENT_EMAIL',
-  'FIREBASE_PRIVATE_KEY',
+  'MONGODB_URI',
 ];
 
 function validateEnv() {
@@ -13,7 +11,7 @@ function validateEnv() {
   if (missing.length > 0) {
     console.warn(
       `⚠️  Missing environment variables: ${missing.join(', ')}. 
-       Some features may not work. See .env.example for configuration.`
+       Falling back to mongodb://localhost:27017/portfolio. See .env.example for configuration.`
     );
   }
 }

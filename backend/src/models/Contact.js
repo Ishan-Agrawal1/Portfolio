@@ -1,56 +1,56 @@
-import { db } from '../config/firebase.js';
-import { COLLECTIONS } from '../utils/constants.js';
+import mongoose from 'mongoose';
+
+const contactSchema = new mongoose.Schema(
+  {
+    name: { type: String, required: true },
+    email: { type: String, required: true },
+    message: { type: String, required: true },
+    read: { type: Boolean, default: false },
+  },
+  { timestamps: true }
+);
+
+const Contact = mongoose.model('Contact', contactSchema);
 
 class ContactModel {
   static async create(contactData) {
-    const docRef = await db
-      .collection(COLLECTIONS.CONTACTS)
-      .add({
-        ...contactData,
-        createdAt: new Date(),
-        read: false,
-      });
-    
-    return { id: docRef.id, ...contactData };
+    const doc = await Contact.create({
+      ...contactData,
+      read: false,
+    });
+    return { id: doc._id.toString(), ...doc.toObject(), _id: undefined };
   }
 
   static async getAll() {
-    const snapshot = await db
-      .collection(COLLECTIONS.CONTACTS)
-      .orderBy('createdAt', 'desc')
-      .get();
-    
-    return snapshot.docs.map(doc => ({
-      id: doc.id,
-      ...doc.data(),
+    const docs = await Contact.find().sort({ createdAt: -1 }).lean();
+    return docs.map((doc) => ({
+      id: doc._id.toString(),
+      ...doc,
+      _id: undefined,
     }));
   }
 
   static async getById(id) {
-    const doc = await db
-      .collection(COLLECTIONS.CONTACTS)
-      .doc(id)
-      .get();
-    
-    if (!doc.exists) return null;
-    return { id: doc.id, ...doc.data() };
+    if (!mongoose.Types.ObjectId.isValid(id)) return null;
+    const doc = await Contact.findById(id).lean();
+    if (!doc) return null;
+    return { id: doc._id.toString(), ...doc, _id: undefined };
   }
 
   static async markAsRead(id) {
-    await db
-      .collection(COLLECTIONS.CONTACTS)
-      .doc(id)
-      .update({ read: true });
-    
-    return this.getById(id);
+    if (!mongoose.Types.ObjectId.isValid(id)) return null;
+    const doc = await Contact.findByIdAndUpdate(
+      id,
+      { read: true },
+      { new: true }
+    ).lean();
+    if (!doc) return null;
+    return { id: doc._id.toString(), ...doc, _id: undefined };
   }
 
   static async delete(id) {
-    await db
-      .collection(COLLECTIONS.CONTACTS)
-      .doc(id)
-      .delete();
-    
+    if (!mongoose.Types.ObjectId.isValid(id)) return null;
+    await Contact.findByIdAndDelete(id);
     return { id };
   }
 }
