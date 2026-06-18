@@ -250,6 +250,29 @@ async function fetchCodeChef() {
   };
 }
 
+// ─── GeeksforGeeks (static data — GFG is a client-rendered SPA with no public API) ──
+async function fetchGeeksforGeeks() {
+  const username = 'agrawaliu1lq';
+  const profileUrl = 'https://www.geeksforgeeks.org/profile/agrawaliu1lq';
+
+  return {
+    platform: 'geeksforgeeks',
+    handle: username,
+    profileUrl,
+    problemsSolved: 100,
+    codingScore: 259,
+    instituteRank: 349,
+    difficultyBreakdown: {
+      school: 0,
+      basic: 22,
+      easy: 39,
+      medium: 37,
+      hard: 2,
+    },
+    fetchedAt: new Date().toISOString(),
+  };
+}
+
 // ─── Main controller ────────────────────────────────────────────────
 export async function getCodingProfiles(req, res) {
   // Return cached data if still valid
@@ -264,10 +287,11 @@ export async function getCodingProfiles(req, res) {
 
   logger.info('Fetching fresh coding profiles from external APIs');
 
-  const [cfResult, lcResult, ccResult] = await Promise.allSettled([
+  const [cfResult, lcResult, ccResult, gfgResult] = await Promise.allSettled([
     fetchCodeforces(),
     fetchLeetCode(),
     fetchCodeChef(),
+    fetchGeeksforGeeks(),
   ]);
 
   const data = {
@@ -283,11 +307,15 @@ export async function getCodingProfiles(req, res) {
       ccResult.status === 'fulfilled'
         ? ccResult.value
         : { platform: 'codechef', error: ccResult.reason?.message },
+    geeksforgeeks:
+      gfgResult.status === 'fulfilled'
+        ? gfgResult.value
+        : { platform: 'geeksforgeeks', error: gfgResult.reason?.message },
     fetchedAt: new Date().toISOString(),
   };
 
   // Only cache if at least one platform succeeded
-  const anySuccess = [cfResult, lcResult, ccResult].some(
+  const anySuccess = [cfResult, lcResult, ccResult, gfgResult].some(
     (r) => r.status === 'fulfilled'
   );
   if (anySuccess) {

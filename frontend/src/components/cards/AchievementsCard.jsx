@@ -1,9 +1,7 @@
 import React from 'react';
 import { Shield, Star, User } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
-import useCodingProfiles from '../hooks/useCodingProfiles.js';
+import useCodingProfiles from '../../hooks/useCodingProfiles.js';
 
-// Fallback data when the API is unavailable
 const FALLBACK_ACHIEVEMENTS = [
   { platform: 'LeetCode', rank: 'Knight', icon: <Shield className="text-[#e9c176]" size={24} /> },
   { platform: 'CodeChef', rank: '3★', icon: <Star className="text-[#e9c176]" size={24} /> },
@@ -16,10 +14,8 @@ function capitalize(str) {
 }
 
 export default function AchievementsCard() {
-  const navigate = useNavigate();
   const { data } = useCodingProfiles();
 
-  // Build achievements from live data with fallbacks
   const achievements = React.useMemo(() => {
     const lc = data?.leetcode;
     const cc = data?.codechef;
@@ -28,7 +24,7 @@ export default function AchievementsCard() {
     return [
       {
         platform: 'LeetCode',
-        rank: lc && !lc.error ? `${lc.totalSolved}+ Solved` : FALLBACK_ACHIEVEMENTS[0].rank,
+        rank: lc && !lc.error ? "Knight" : FALLBACK_ACHIEVEMENTS[0].rank,
         icon: <img src='/assets/leetcode.png' alt='LeetCode' className="w-8 h-8" />,
       },
       {
@@ -50,7 +46,7 @@ export default function AchievementsCard() {
       <div className="space-y-4">
         {achievements.map((ach, index) => (
           <div key={index} className="flex items-center gap-4">
-            <div className="w-10 h-10 flex items-center justify-center bg-black/20 rounded-lg">
+            <div className="w-10 h-10 flex items-center justify-center rounded-lg">
               {ach.icon}
             </div>
             <div>

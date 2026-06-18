@@ -28,24 +28,29 @@ export const COLORS = {
 
 // Skills & Tech Stack
 export const DSA_SKILLS = [
+  'ARRAYS',
+  'STRINGS',
+  'HASHING',
+  'TWO POINTERS',
+  'BINARY SEARCH',
+  'GREEDY',
   'DYNAMIC PROGRAMMING',
-  'GRAPH THEORY',
-  'SEGMENT TREES',
-  'FENWICK TREES',
-  'COMBINATORICS',
-  'NETWORK FLOW',
-  'STRING ALGORITHMS'
+  'GRAPHS',
+  'TREES',
+  'BACKTRACKING',
+  'LINKED LISTS',
+  'STACKS',
+  'RECURSION'
 ];
 
 export const TECH_STACK = [
-  'C++ 20',
-  'PYTHON',
-  'GO',
-  'TYPESCRIPT',
-  'LINUX / BASH',
-  'DOCKER',
-  'KUBERNETES'
+  'C++',
+  'HTML',
+  'CSS',
+  'JavaScript',
+  'SQL'
 ];
+
 
 // Courses
 export const COURSES = [
