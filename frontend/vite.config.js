@@ -8,7 +8,7 @@ export default defineConfig(({ mode }) => {
   return {
     plugins: [react(), tailwindcss()],
     define: {
-      'process.env.VITE_API_URL': JSON.stringify(env.VITE_API_URL || 'http://localhost:3000/api'),
+      'process.env.VITE_API_URL': JSON.stringify(env.VITE_API_URL),
     },
     resolve: {
       alias: {

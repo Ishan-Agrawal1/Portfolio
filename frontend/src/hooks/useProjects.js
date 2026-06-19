@@ -7,7 +7,7 @@ export default function useProjects() {
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:3000/api';
+        const apiUrl = import.meta.env.VITE_API_URL;
         const response = await fetch(`${apiUrl}/projects`);
         if (!response.ok) throw new Error('Failed to fetch projects');
         const data = await response.json();

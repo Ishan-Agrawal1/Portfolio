@@ -16,18 +16,24 @@ export function FeaturedWorkSection({ projects, loading }) {
         </div>
       ) : (
         projects.length > 0 && (
-          <div className="grid md:grid-cols-5 gap-8 items-stretch mb-12">
-            <div className="md:col-span-3">
-              <ProjectCard project={projects[0]} index={1} className="h-full" />
-              <CTAButton onClick={() => navigate('/projects')} className="mt-10">
-                View All Projects
-              </CTAButton>
+          <div className="grid lg:grid-cols-3 gap-8 items-stretch mb-12">
+            <div className="lg:col-span-2 flex flex-col">
+              <ProjectCard project={projects[0]} index={1} className="flex-grow" />
+              <div className="mt-10">
+                <CTAButton onClick={() => navigate('/projects')}>
+                  View All Projects
+                </CTAButton>
+              </div>
             </div>
-            <div className="md:col-span-2">
-              <AchievementsCard />
-              <CTAButton onClick={() => navigate('/skills')} className="mt-10">
-                View All Skills
-              </CTAButton>
+            <div className="lg:col-span-1 flex flex-col">
+              <div className="flex-grow">
+                <AchievementsCard />
+              </div>
+              <div className="mt-10">
+                <CTAButton onClick={() => navigate('/skills')}>
+                  View All Skills
+                </CTAButton>
+              </div>
             </div>
           </div>
         )
