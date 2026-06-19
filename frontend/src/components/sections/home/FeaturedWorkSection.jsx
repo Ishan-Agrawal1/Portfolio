@@ -9,7 +9,7 @@ export function FeaturedWorkSection({ projects, loading }) {
 
   return (
     <section className="py-20 px-10 md:px-20 max-w-7xl mx-auto">
-      <h2 className="font-serif text-5xl text-white mb-12">Featured Work</h2>
+      <h2 className="font-serif text-3xl md:text-5xl text-white mb-12">Featured Work</h2>
       {loading ? (
         <div className="flex justify-center">
           <LoadingSpinner />

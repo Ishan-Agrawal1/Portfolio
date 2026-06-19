@@ -20,7 +20,7 @@ export function HomeHero() {
         <p className="font-mono text-xs text-[#e9c176] uppercase tracking-[0.3em] mb-6">
           FULL STACK DEVELOPER • SOFTWARE ENGINEER
         </p>
-        <h1 className="font-serif text-6xl md:text-8xl text-white mb-8 leading-[1.1] tracking-tight">
+        <h1 className="font-serif text-4xl sm:text-5xl md:text-7xl lg:text-8xl text-white mb-8 leading-[1.1] tracking-tight">
           Algorithmic Thinking <br />
           <span className="italic text-gray-400">Meets Modern Web Development</span>
         </h1>

@@ -2,7 +2,7 @@ export function ProjectsHeader() {
   return (
     <div className="max-w-3xl">
       <p className="font-mono text-xs text-[#e9c176] uppercase tracking-[0.2em] mb-4">My Projects</p>
-      <h2 className="font-serif text-7xl text-white mb-8 leading-tight">
+      <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white mb-8 leading-tight">
         A showcase of <br />
         <span className="italic text-gray-400">my development work.</span>
       </h2>
