@@ -1,11 +1,16 @@
 import ContactModel from '../models/Contact.js';
 import { MESSAGES, ERROR_CODES } from '../utils/constants.js';
 import { logger } from '../utils/logger.js';
+import { sendContactNotification, sendAutoReply } from '../utils/email.js';
 
 export async function submitContact(req, res, next) {
   try {
     const contact = await ContactModel.create(req.body);
     logger.info('Contact form submitted', { contactId: contact.id, email: contact.email });
+    
+    // Send email notifications asynchronously (don't await so we don't block the response)
+    sendContactNotification(contact);
+    sendAutoReply(contact);
     
     res.status(201).json({
       success: true,

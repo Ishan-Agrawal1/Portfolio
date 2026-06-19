@@ -1,14 +1,33 @@
 import mongoose from 'mongoose';
 
-const projectSchema = new mongoose.Schema(
-  {
-    title: { type: String, required: true },
-    description: { type: String, required: true },
-    tags: { type: [String], default: [] },
-    imageUrl: { type: String, default: '' },
+const projectSchema = new mongoose.Schema({
+  title: String,
+  shortDescription: String,
+  fullDescription: String,
+  thumbnail: String,
+  demoVideo: String,
+  githubUrl: String,
+  liveUrl: String,
+  techStack: [String],
+  features: [String],
+  category: {
+    type: String,
+    enum: [
+      "Full Stack",
+      "Frontend",
+      "Backend",
+      "Mobile",
+      "Blockchain"
+    ]
   },
-  { timestamps: true }
-);
+
+  featured: {
+    type: Boolean,
+    default: false
+  },
+
+  
+},{ timestamps: true });
 
 const Project = mongoose.model('Project', projectSchema);
 
@@ -17,12 +36,8 @@ class ProjectModel {
     const docs = await Project.find().sort({ createdAt: -1 }).lean();
     return docs.map((doc) => ({
       id: doc._id.toString(),
-      title: doc.title,
-      description: doc.description,
-      tags: doc.tags,
-      imageUrl: doc.imageUrl,
-      createdAt: doc.createdAt,
-      updatedAt: doc.updatedAt,
+      ...doc,
+      _id: undefined,
     }));
   }
 

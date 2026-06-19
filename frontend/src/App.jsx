@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'motion/react';
 import AppLayout from './components/layout/AppLayout.jsx';
-import { routes } from './routes/AppRoutes.jsx';
+import ProtectedRoute from './components/ProtectedRoute.jsx';
+import { routes, adminRoutes } from './routes/AppRoutes.jsx';
 import { apiClient } from './lib/api.js';
 import { default as Contact } from './pages/Contact.jsx';
 import { default as Projects } from './pages/Projects.jsx';
@@ -41,6 +42,7 @@ export default function App() {
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const location = useLocation();
 
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [contactLoading, setContactLoading] = useState(false);
@@ -111,6 +113,31 @@ export default function App() {
     onSubmit: handleFormSubmit,
   };
 
+  // Check if current route is an admin route
+  const isAdminRoute = location.pathname.startsWith('/admin');
+
+  // Render admin routes without AppLayout
+  if (isAdminRoute) {
+    return (
+      <Routes>
+        {adminRoutes.map(({ path, element, protected: isProtected }) => (
+          <Route
+            key={path}
+            path={path}
+            element={
+              isProtected ? (
+                <ProtectedRoute>{element}</ProtectedRoute>
+              ) : (
+                element
+              )
+            }
+          />
+        ))}
+      </Routes>
+    );
+  }
+
+  // Render public routes with AppLayout
   return (
     <AppLayout>
       <AnimatedOutlet projects={projects} loading={loading} contactProps={contactProps} />

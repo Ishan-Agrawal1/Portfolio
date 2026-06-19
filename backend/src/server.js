@@ -8,6 +8,8 @@ import { errorHandler } from './middleware/errorHandler.js';
 import projectRoutes from './routes/projects.js';
 import contactRoutes from './routes/contacts.js';
 import codingProfileRoutes from './routes/codingProfiles.js';
+import authRoutes from './routes/auth.js';
+import adminProjectRoutes from './routes/adminProjects.js';
 
 dotenv.config();
 
@@ -50,6 +52,8 @@ app.get('/api/health', (req, res) => {
 app.use('/api/projects', projectRoutes);
 app.use('/api/contacts', contactRoutes);
 app.use('/api/coding-profiles', codingProfileRoutes);
+app.use('/api/auth', authRoutes);
+app.use('/api/admin/projects', adminProjectRoutes);
 
 // 404 handler
 app.use((req, res) => {
