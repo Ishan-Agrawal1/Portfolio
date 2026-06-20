@@ -6,6 +6,7 @@ import CTAButton from '../../ui/CTAButton.jsx';
 
 export function FeaturedWorkSection({ projects, loading }) {
   const navigate = useNavigate();
+  const featuredProjects = projects?.filter(p => p.featured) || [];
 
   return (
     <section className="py-20 px-10 md:px-20 max-w-7xl mx-auto">
@@ -15,10 +16,10 @@ export function FeaturedWorkSection({ projects, loading }) {
           <LoadingSpinner />
         </div>
       ) : (
-        projects.length > 0 && (
+        featuredProjects.length > 0 && (
           <div className="grid lg:grid-cols-3 gap-8 items-stretch mb-12">
             <div className="lg:col-span-2 flex flex-col">
-              <ProjectCard project={projects[0]} index={1} className="flex-grow" />
+              <ProjectCard project={featuredProjects[0]} index={1} className="flex-grow" />
               <div className="mt-10">
                 <CTAButton onClick={() => navigate('/projects')}>
                   View All Projects

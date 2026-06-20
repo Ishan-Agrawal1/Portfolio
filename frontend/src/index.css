@@ -2,6 +2,9 @@
 @import "tailwindcss";
 
 @layer base {
+  html, body {
+    overflow-x: hidden;
+  }
   html, body, #root {
     background-image: url('/assets/darker_texture.png');
     background-attachment: fixed;
