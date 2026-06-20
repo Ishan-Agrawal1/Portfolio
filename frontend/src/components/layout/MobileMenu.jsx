@@ -19,7 +19,7 @@ export default function MobileMenu({ isOpen, onClose }) {
               to={item.path}
               onClick={onClose}
               className={({ isActive }) =>
-                `font-serif text-4xl text-left ${isActive ? 'text-[#e9c176]' : 'text-white'}`
+                `font-serif text-2xl text-left ${isActive ? 'text-[#e9c176]' : 'text-white'}`
               }
               end={item.path === '/'}
             >

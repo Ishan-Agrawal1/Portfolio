@@ -23,7 +23,7 @@ export function Navbar({ isMenuOpen, onToggleMenu }) {
             to={item.path}
             end={item.path === '/'}
             className={({ isActive }) =>
-              `font-mono text-[10px] uppercase tracking-[0.2em] transition-all duration-300 relative group ${isActive ? 'text-[#e9c176]' : 'text-gray-300 hover:text-[#e9c176]'
+              `font-mono text-xs uppercase tracking-[0.2em] transition-all duration-300 relative group ${isActive ? 'text-[#e9c176]' : 'text-gray-300 hover:text-[#e9c176]'
               }`
             }
           >

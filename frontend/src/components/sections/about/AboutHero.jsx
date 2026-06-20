@@ -3,7 +3,7 @@ export function AboutHero() {
     <section className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
       <div className="max-w-2xl">
         <p className="font-mono text-[10px] text-[#e9c176] uppercase tracking-[0.4em] mb-4">About me</p>
-        <h1 className="font-serif text-7xl text-white mb-10 leading-[0.9]">
+        <h1 className="font-serif text-4xl sm:text-5xl md:text-7xl lg:text-8xl  text-white mb-10 leading-[0.9]">
           Building scalable
           <br />
           <span className="italic text-gray-400">systems for the web. </span>
