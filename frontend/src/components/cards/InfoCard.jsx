@@ -1,11 +1,20 @@
+import BorderGlow from '../ui/BorderGlow/BorderGlow.jsx';
+
 export function InfoCard({ title, description }) {
   return (
-    <div className="bg-[#141414] border border-white/5 p-12 rounded-2xl group hover:border-[#e9c176]/20 transition-all">
-      <h3 className="font-serif text-3xl mb-6">{title}</h3>
-      <p className="font-sans text-gray-400 text-lg leading-relaxed font-light">
-        {description}
-      </p>
-    </div>
+    <BorderGlow
+      backgroundColor="#141414"
+      borderRadius={16}
+      glowColor="40 80 80"
+      colors={['#e9c176', '#f472b6', '#38bdf8']}
+    >
+      <div className="p-12">
+        <h3 className="font-serif text-3xl mb-6">{title}</h3>
+        <p className="font-sans text-gray-400 text-lg leading-relaxed font-light">
+          {description}
+        </p>
+      </div>
+    </BorderGlow>
   );
 }
 

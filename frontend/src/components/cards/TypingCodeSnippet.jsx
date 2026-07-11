@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'motion/react';
+import BorderGlow from '../ui/BorderGlow/BorderGlow.jsx';
 
 export function TypingCodeSnippet() {
   const [text, setText] = React.useState('');
@@ -30,22 +31,31 @@ export function TypingCodeSnippet() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
-      className="hidden lg:block w-full max-w-sm ml-auto bg-[#141414] border border-white/5 p-8 rounded-2xl relative shadow-2xl"
+      className="hidden lg:block w-full max-w-sm ml-auto"
     >
-      <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-[#e9c176]/10 to-transparent rounded-bl-full pointer-events-none" />
-      <div className="flex gap-2 mb-6">
-        <div className="w-3 h-3 rounded-full bg-[#ff5f56]/80" />
-        <div className="w-3 h-3 rounded-full bg-[#ffbd2e]/80" />
-        <div className="w-3 h-3 rounded-full bg-[#27c93f]/80" />
-      </div>
-      <pre className="font-mono text-[15px] leading-loose text-gray-300 m-0">
-        <span dangerouslySetInnerHTML={{ __html: highlightCode(text) }} />
-        <motion.span
-          animate={{ opacity: [1, 0] }}
-          transition={{ repeat: Infinity, duration: 0.8, ease: "linear" }}
-          className="inline-block w-2.5 h-4 bg-[#e9c176] ml-1 align-middle"
-        />
-      </pre>
+      <BorderGlow
+        backgroundColor="#141414"
+        borderRadius={16}
+        glowColor="40 80 80"
+        colors={['#e9c176', '#f472b6', '#38bdf8']}
+      >
+        <div className="p-8 relative shadow-2xl">
+          <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-[#e9c176]/10 to-transparent rounded-bl-full pointer-events-none" />
+          <div className="flex gap-2 mb-6">
+            <div className="w-3 h-3 rounded-full bg-[#ff5f56]/80" />
+            <div className="w-3 h-3 rounded-full bg-[#ffbd2e]/80" />
+            <div className="w-3 h-3 rounded-full bg-[#27c93f]/80" />
+          </div>
+          <pre className="font-mono text-[15px] leading-loose text-gray-300 m-0">
+            <span dangerouslySetInnerHTML={{ __html: highlightCode(text) }} />
+            <motion.span
+              animate={{ opacity: [1, 0] }}
+              transition={{ repeat: Infinity, duration: 0.8, ease: "linear" }}
+              className="inline-block w-2.5 h-4 bg-[#e9c176] ml-1 align-middle"
+            />
+          </pre>
+        </div>
+      </BorderGlow>
     </motion.div>
   );
 }

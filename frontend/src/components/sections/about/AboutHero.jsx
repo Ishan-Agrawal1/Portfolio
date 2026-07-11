@@ -1,3 +1,5 @@
+import BorderGlow from '../../ui/BorderGlow/BorderGlow.jsx';
+
 export function AboutHero() {
   return (
     <section className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
@@ -14,14 +16,27 @@ export function AboutHero() {
       </div>
 
       <div className="relative group flex justify-end">
-        <div className="aspect-[4/5] bg-transparent rounded-2xl overflow-hidden border border-white/5 relative w-full max-w-md">
-          <img
-            src="/assets/image.png"
-            alt="The Architect"
-            className="w-full h-full object-cover contrast-125 opacity-80 group-hover:scale-105 transition-transform duration-700"
-            referrerPolicy="no-referrer"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent"></div>
+        <div className="w-full max-w-md">
+          <BorderGlow
+            backgroundColor="transparent"
+            borderRadius={16}
+            glowColor="40 80 80"
+            colors={['#e9c176', '#f472b6', '#38bdf8']}
+            glowRadius={30}
+            glowIntensity={1.2}
+            fillOpacity={0}
+            animated
+          >
+            <div className="aspect-[4/5] relative overflow-hidden rounded-2xl">
+              <img
+                src="/assets/image.png"
+                alt="The Architect"
+                className="w-full h-full object-cover contrast-125 opacity-80 group-hover:scale-105 transition-transform duration-700"
+                referrerPolicy="no-referrer"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent"></div>
+            </div>
+          </BorderGlow>
         </div>
         <div className="absolute -z-10 -top-10 -right-10 w-40 h-40 border border-white/5 opacity-50"></div>
       </div>

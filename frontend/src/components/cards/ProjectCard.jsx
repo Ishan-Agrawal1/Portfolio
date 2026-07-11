@@ -1,14 +1,19 @@
 import React from 'react';
 import { Github, ExternalLink, ArrowRight } from 'lucide-react';
+import BorderGlow from '../ui/BorderGlow/BorderGlow.jsx';
 
 export function ProjectCard({ project, index, onViewDetails, className = '' }) {
   return (
-    <>
-      <article
-        className={`group relative rounded-xl overflow-hidden bg-[#141414] border border-white/10 backdrop-blur-xl transition-all duration-500 hover:border-[#e9c176]/20 flex flex-col ${className}`}
-      >
+    <BorderGlow
+      backgroundColor="#141414"
+      borderRadius={12}
+      glowColor="40 80 80"
+      colors={['#e9c176', '#f472b6', '#38bdf8']}
+      className={className}
+    >
+      <article className="group flex flex-col h-full">
         <div
-          className={`aspect-video w-full bg-[#1a1a1a] relative overflow-hidden`}
+          className="aspect-video w-full bg-[#1a1a1a] relative overflow-hidden rounded-t-[12px]"
         >
           <img
             src={project.thumbnail || `https://picsum.photos/seed/${project.title}/800/600`}
@@ -81,7 +86,7 @@ export function ProjectCard({ project, index, onViewDetails, className = '' }) {
           </div>
         </div>
       </article>
-    </>
+    </BorderGlow>
   );
 }
 

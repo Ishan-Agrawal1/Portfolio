@@ -1,6 +1,7 @@
 import React from 'react';
 import { Shield, Star, User } from 'lucide-react';
 import useCodingProfiles from '../../hooks/useCodingProfiles.js';
+import BorderGlow from '../ui/BorderGlow/BorderGlow.jsx';
 
 const FALLBACK_ACHIEVEMENTS = [
   { platform: 'LeetCode', rank: 'Knight', icon: <Shield className="text-[#e9c176]" size={24} /> },
@@ -41,21 +42,28 @@ export default function AchievementsCard() {
   }, [data]);
 
   return (
-    <div className="bg-[#141414] border border-white/10 rounded-2xl p-8 h-full flex flex-col justify-center">
-      <h3 className="font-serif text-3xl text-white mb-6">Achievements</h3>
-      <div className="space-y-4">
-        {achievements.map((ach, index) => (
-          <div key={index} className="flex items-center gap-4">
-            <div className="w-10 h-10 flex items-center justify-center rounded-lg">
-              {ach.icon}
+    <BorderGlow
+      backgroundColor="#141414"
+      borderRadius={16}
+      glowColor="40 80 80"
+      colors={['#e9c176', '#f472b6', '#38bdf8']}
+    >
+      <div className="p-8 h-full flex flex-col justify-center">
+        <h3 className="font-serif text-3xl text-white mb-6">Achievements</h3>
+        <div className="space-y-4">
+          {achievements.map((ach, index) => (
+            <div key={index} className="flex items-center gap-4">
+              <div className="w-10 h-10 flex items-center justify-center rounded-lg">
+                {ach.icon}
+              </div>
+              <div>
+                <p className="font-mono text-sm text-gray-300">{ach.platform}</p>
+                <p className="font-serif text-lg text-white">{ach.rank}</p>
+              </div>
             </div>
-            <div>
-              <p className="font-mono text-sm text-gray-300">{ach.platform}</p>
-              <p className="font-serif text-lg text-white">{ach.rank}</p>
-            </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
-    </div>
+    </BorderGlow>
   );
 }

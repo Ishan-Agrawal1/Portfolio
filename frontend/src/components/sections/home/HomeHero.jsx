@@ -3,6 +3,7 @@ import { motion } from 'motion/react';
 import { ArrowUpRight } from 'lucide-react';
 import CTAButton from '../../ui/CTAButton.jsx';
 import TechMarquee from './TechMarquee.jsx';
+import BorderGlow from '../../ui/BorderGlow/BorderGlow.jsx';
 
 export function HomeHero() {
   const navigate = useNavigate();
@@ -52,17 +53,28 @@ export function HomeHero() {
         initial={{ opacity: 0, scale: 0.8, x: 100 }}
         animate={{ opacity: 1, scale: 1, x: 0 }}
         transition={{ duration: 1.2, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-        className="absolute right-20 top-1/2 -translate-y-1/2 w-[400px] h-[400px] hidden lg:block pointer-events-none"
+        className="absolute right-20 top-1/2 -translate-y-1/2 w-[400px] h-[400px] hidden lg:block"
       >
-        <div className="relative w-full h-full">
-          <div className="absolute inset-0 z-10 bg-gradient-radial from-transparent via-transparent to-[#0A0A0A]"></div>
-          <img
-            src="/assets/image.png"
-            alt="Portrait"
-            referrerPolicy="no-referrer"
-            className="w-full h-full object-cover object-top rounded-full border border-white/10"
-          />
-        </div>
+        <BorderGlow
+          backgroundColor="transparent"
+          borderRadius={9999}
+          glowColor="40 80 80"
+          colors={['#e9c176', '#f472b6', '#38bdf8']}
+          glowRadius={30}
+          glowIntensity={1.2}
+          fillOpacity={0}
+          animated
+        >
+          <div className="relative w-[400px] h-[400px]">
+            <div className="absolute inset-0 z-10 bg-gradient-radial from-transparent via-transparent to-[#0A0A0A] rounded-full"></div>
+            <img
+              src="/assets/image.png"
+              alt="Portrait"
+              referrerPolicy="no-referrer"
+              className="w-full h-full object-cover object-top rounded-full"
+            />
+          </div>
+        </BorderGlow>
       </motion.div>
 
       <TechMarquee />

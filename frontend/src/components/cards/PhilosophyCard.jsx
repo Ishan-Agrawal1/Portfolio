@@ -1,14 +1,23 @@
+import BorderGlow from '../ui/BorderGlow/BorderGlow.jsx';
+
 export function PhilosophyCard({ title, icon: Icon, description }) {
   return (
-    <div className="bg-[#141414] border border-white/5 p-12 rounded-2xl group hover:border-[#e9c176]/20 transition-all">
-      <div className="flex justify-between items-start mb-8">
-        <h3 className="font-serif text-3xl">{title}</h3>
-        <Icon className="text-[#e9c176]/40 group-hover:text-[#e9c176] transition-colors" size={32} />
+    <BorderGlow
+      backgroundColor="#141414"
+      borderRadius={16}
+      glowColor="40 80 80"
+      colors={['#e9c176', '#f472b6', '#38bdf8']}
+    >
+      <div className="p-12 group">
+        <div className="flex justify-between items-start mb-8">
+          <h3 className="font-serif text-3xl">{title}</h3>
+          <Icon className="text-[#e9c176]/40 group-hover:text-[#e9c176] transition-colors" size={32} />
+        </div>
+        <p className="font-sans text-gray-400 text-lg leading-relaxed font-light">
+          {description}
+        </p>
       </div>
-      <p className="font-sans text-gray-400 text-lg leading-relaxed font-light">
-        {description}
-      </p>
-    </div>
+    </BorderGlow>
   );
 }
 
